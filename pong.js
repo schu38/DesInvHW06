@@ -3,7 +3,7 @@ var puck = {
   y: 200,
   xSpeed: 1,
   ySpeed: -1,
-  r: 10
+  r: 9
 };
 var edgeOffset = 30;
 
@@ -90,7 +90,9 @@ function draw() {
   if (puck.x - puck.r < player1.x + player1.wd) {
     // check if puck is within paddle height...
     if (puck.y > player1.y && puck.y < player1.y + player1.ht) {
-      puck.xSpeed = abs(puck.xSpeed);
+      puck.xSpeed = abs(puck.xSpeed) + 0.2;
+      puck.ySpeed = abs(puck.ySpeed) + abs(random(1,2) * 0.2)
+      player2.y = player2.y + 0.075;
     } else if (puck.x < 0) { 
       // ???
       ellipse(score2.x, score2.y, score2.r);
@@ -103,7 +105,9 @@ function draw() {
   if (puck.x + puck.r > player2.x - player2.wd) {
     // check if puck is within paddle height...
     if (puck.y > player2.y && puck.y < player2.y + player2.ht) {
-      puck.xSpeed = -abs(puck.xSpeed);
+      puck.xSpeed = -abs(puck.xSpeed) - 0.2;
+      puck.ySpeed = -abs(puck.ySpeed) - abs(random(1,2) * 0.2)
+      player1.y = player1.y + 0.075;
     } else if (puck.x > 400) {
       // ???
       ellipse(score1.x, score1.y, score1.r);
